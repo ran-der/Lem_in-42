@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_room.c                                         :+:      :+:    :+:   */
+/*   error_ft.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/06 21:10:21 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/08 16:23:16 by rvan-der         ###   ########.fr       */
+/*   Created: 2017/03/08 13:26:58 by rvan-der          #+#    #+#             */
+/*   Updated: 2017/03/08 14:37:37 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int				get_room(char *buf, t_room **rms, int cmd)
+t_map			*rd_error(t_map **map)
 {
-	int			i;
-	char		name[25];
-	t_room		*new;
-
-	i = -1;
-	while (buf[++i] && buf[i] != ' ')
-		name[i] = buf[i];
-	name[i] = '\0';
-	if (is_inlist(name, *rms) && (new = new_room(name, cmd)) != NULL)
-	{
-		if (cmd == 1)
-			room_add(rms, new);
-		else
-			room_pushback(rms, new);
-		return (1);
-	}
-	return (0);
+	if (*map != NULL)
+		free(*map);
+	return (NULL);
 }
+
+

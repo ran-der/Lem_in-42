@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 18:54:32 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/06 21:56:20 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/08 16:23:19 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,25 @@ t_map			*read_map(void)
 	t_map		*ret;
 	char		*buf;
 	int			ofs;
-	int			chk;
+	int			cmd;
 
 	if ((ret = (t_map*)malloc(sizeof(t_map))) == NULL)
 		return (NULL);
 	ret->output = NULL;
 	ret->rooms = NULL;
 	if ((ret->n = ant_nb(ret)) == -1)
-		return (rd_error(ret));
+		return (rd_error(&ret));
 	ofs = 0;
+	tmp = 0;
 	while (get_next_line(&buf))
 	{
-		if ((chk = check_buff(&buf, &ofs)) == -1)
-			return (rd_error(ret));
-		if (chk < 3)
-			get_room(buf, &(ret->rooms), chk);
-		else if (chk == 3)
+		if ((cmd = check_buff(&buf, &ofs)) == -1 || \
+				(cmd == 1 && (tmp == 1 || tmp == 3)) || \
+				(cmd == 2 && (tmp == 2 || tmp == 3)))
+			return (rd_error(&ret));
+		if (cmd < 3)
+			get_room(buf, &(ret->rooms), cmd);
+		else if (cmd == 3)
 			make_link(buf, ret->rooms);
 	}
 	return (ret);
