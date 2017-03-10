@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 18:54:32 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/08 16:23:19 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/10 22:23:45 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,35 +28,41 @@ int				ant_nb(t_map *map)
 	if (buf[i] != '\0')
 		return (-1);
 	ret = ft_atoi(buf);
-	free(buf);
+	ft_memdel((void**)(&buf));
+	return (ret);
+}
+
+t_map			*init_map(void)
+{
+	t_map		*ret;
+
+	if ((ret = (t_map*)malloc(sizeof(t_map))) == NULL)
+		return (NULL);
+	ret->output = NULL;
+	ret->rooms = NULL;
+	ret->links = NULL;
 	return (ret);
 }
 
 t_map			*read_map(void)
 {
 	t_map		*ret;
-	char		*buf;
-	int			ofs;
-	int			cmd;
+	t_room		*roomlst;
+	char		*fstlink;
 
-	if ((ret = (t_map*)malloc(sizeof(t_map))) == NULL)
-		return (NULL);
-	ret->output = NULL;
-	ret->rooms = NULL;
-	if ((ret->n = ant_nb(ret)) == -1)
+	ret = init_map();
+	if (!ret || (ret->n = ant_nb(ret)) == -1)
 		return (rd_error(&ret));
-	ofs = 0;
-	tmp = 0;
-	while (get_next_line(&buf))
+	if (!(roomlst = read_rooms(ret, &fstlink)))
+		return (rd_error(&ret));
+	ret->r = list_len(ret->rlist);
+	if (!(ret->rooms = make_rtab(roomlst, r)))
+		return (rd_error(&ret));
+	if (!read_links(ret, fstlink))
 	{
-		if ((cmd = check_buff(&buf, &ofs)) == -1 || \
-				(cmd == 1 && (tmp == 1 || tmp == 3)) || \
-				(cmd == 2 && (tmp == 2 || tmp == 3)))
-			return (rd_error(&ret));
-		if (cmd < 3)
-			get_room(buf, &(ret->rooms), cmd);
-		else if (cmd == 3)
-			make_link(buf, ret->rooms);
+		ft_memdel((void**)(&fstlink));
+		return (rd_error(&ret));
 	}
+	ft_memdel((void**)(&fstlink));
 	return (ret);
 }

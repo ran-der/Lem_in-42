@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 13:26:58 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/08 14:37:37 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/10 22:23:10 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 t_map			*rd_error(t_map **map)
 {
-	if (*map != NULL)
-		free(*map);
+	delete_map(map);
 	return (NULL);
 }
-
-

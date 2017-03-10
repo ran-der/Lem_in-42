@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 13:21:14 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/08 16:22:28 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/10 19:30:35 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,61 +19,54 @@ t_room			*new_room(char *nm, int cmd)
 	if (!(ret = (t_room*)malloc(sizeof(t_room))))
 		return (NULL);
 	if (!(ret->links = (char**)malloc(sizeof(char*))))
-		ft_memdel((void**)(&ret));
-	if (!ret || !(*(ret->links) = (char*)malloc(sizeof(char))))
 	{
-		if (ret != NULL)
-		{
-			ft_memdel((void**)(&(ret->links)));
-			ft_memdel((void**)(&ret));
-		}
+		ft_memdel((void**)(&ret));
 		return (NULL);
 	}
-	ft_strcpy((char*)(ret->name), nm);
 	*(ret->links) = NULL;
 	ret->mark = 0;
-	ret->dist = -1;
-	ft_bzero((void*)(ret->via), 22);
 	ret->start = (cmd == 1 ? 1 : 0);
 	ret->end = (cmd == 2 ? 1 : 0);
+	ret->ant = 0;
+	ft_strcpy((char*)(ret->name), nm);
 	ret->next = NULL;
 	ret->prev = NULL;
 	return (ret);
 }
 
-void			room_add(t_room **rooms, t_room *new)
+void			room_add(t_room **rooms, t_room *elem)
 {
 	t_room		*tmp;
 
-	if (!new)
+	if (!elem)
 		return ;
 	if (!(*rooms))
-		*rooms = new;
+		*rooms = elem;
 	else if ((*rooms)->start)
 	{
 		tmp = ((*rooms)->next)->prev;
-		tmp->prev = new;
-		new->next = tmp;
-		new->prev = *rooms;
-		(*rooms)->next = new;
+		tmp->prev = elem;
+		elem->next = tmp;
+		elem->prev = *rooms;
+		(*rooms)->next = elem;
 	}
 	else
 	{
-		(*rooms)->prev = new;
-		new->next = *rooms;
-		*rooms = new;
+		(*rooms)->prev = elem;
+		elem->next = *rooms;
+		*rooms = elem;
 	}
 }
 
-void			room_pushback(t_room **rooms, t_room *new)
+void			room_pushback(t_room **rooms, t_room *elem)
 {
 	t_room		*tmp;
 	t_room		*tmp2;
 	
-	if (!new)
+	if (!elem)
 		return ;
 	if (!(tmp = *rooms))
-		tmp = new;
+		tmp = elem;
 	else
 	{
 		while (tmp->next != NULL)
@@ -81,14 +74,14 @@ void			room_pushback(t_room **rooms, t_room *new)
 		if (tmp->end)
 		{
 			if ((tmp2 = tmp->prev) != NULL)
-				tmp2->next = new;
-			new->next = tmp;
-			new->prev = tmp2;
+				tmp2->next = elem;
+			elem->next = tmp;
+			elem->prev = tmp2;
 		}
 		else
 		{
-			new->prev = tmp;
-			tmp->next = new;
+			elem->prev = tmp;
+			tmp->next = elem;
 		}
 	}
 }
@@ -102,4 +95,19 @@ t_room			*select_room(t_room *rooms, char *nm)
 	while (ret != NULL && ft_strcmp(ret->name, nm))
 		ret = ret->next;
 	return (ret);
+}
+
+int				list_len(t_room *list)
+{
+	int			i;
+	t_room		*tmp;
+
+	tmp = list;
+	i = 0;
+	while (tmp != NULL)
+	{
+		i++;
+		tmp = tmp->next;
+	}
+	return (i);
 }

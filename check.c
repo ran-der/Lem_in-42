@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 20:33:07 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/06 21:17:57 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/10 22:23:47 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int				check_for_cmd(char **buf, t_map *map)
 		ret = 2;
 	if (ret > 0)
 	{
-		free(*buf);
+		ft_memdel((void**)buf);
 		get_next_line(0, buf);
 		if (!check_for_room(*buf))
 			return (-1);
@@ -70,20 +70,17 @@ int				check_for_cmd(char **buf, t_map *map)
 	return (ret);
 }
 
-int				check_buff(char **buf, int *ofs, t_map *map)
+int				check_buff(char **buf, t_map *map, int ofs)
 {
 	if (!*buf || (*buf)[0] == 'L')
 		return (-1);
 	map->output = ft_dstrjoin(map->output, "\n");
 	map->output = ft_dstrjoin(map->output, *buf);
 	if ((*buf)[0] == '#')
-		return (*ofs && (*buf)[1] == '#' ? -1 : check_for_cmd(buf, map));
-	if (!(*ofs) && check_for_room(*buf))
+		return (ofs && (*buf)[1] == '#' ? -1 : check_for_cmd(buf, map));
+	if (!ofs && check_for_room(*buf))
 		return (0);
 	if (check_for_link(*buf))
-	{
-		*ofs = 1;
 		return (3);
-	}
 	return (-1);
 }
