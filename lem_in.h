@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 20:29:07 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/10 22:23:22 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/11 22:09:33 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ typedef struct		s_room
 
 typedef struct		s_path
 {
-	int				*path;
-	int				id;
+	int				*pth;
 	int				len;
+	int				pass;
+	struct s_path	*next;
 }					t_path;
 
 typedef struct		s_map
@@ -42,7 +43,6 @@ typedef struct		s_map
 	int				r;
 	t_room			**rooms;
 	int				**links;
-	t_path			*paths;
 	char			*output;
 }					t_map;
 
@@ -52,11 +52,18 @@ t_room				*select_room(t_room *rooms, char *nm);
 void				room_pushback(t_room **rooms, t_room *elem);
 void				room_add(t_room **rooms, t_room *elem);
 t_room				*new_room(char *nm, int cmd);
-int					check_buff(char **buf, int *ofs, t_map *map);
+int					rlist_len(t_room *list);
+int					check_buff(char **buf, t_map *map, int ofs);
 int					check_for_room(char *buf);
 int					check_for_link(char *buf);
-t_map				*rd_error(t_map **map, char	*buf);
-void				make_link(char *buf, t_room *rooms);
+t_map				*rd_error(t_map **map);
+void				make_link(char *buf, t_map *map);
 int					tabsize(char **tab);
+t_room				*read_rooms(t_map *map, char **fstlink);
+t_room				**make_rtab(t_room *rlist, int size);
+int					read_links(t_map *map, char *fstlink);
+void				delete_map(t_map **map);
+void				delete_roomlst(t_room **list);
+void				delete_itab(int **tab, int size);
 
 #endif

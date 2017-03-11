@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 13:21:14 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/10 19:30:35 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/11 15:20:47 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@ t_room			*new_room(char *nm, int cmd)
 
 	if (!(ret = (t_room*)malloc(sizeof(t_room))))
 		return (NULL);
-	if (!(ret->links = (char**)malloc(sizeof(char*))))
-	{
-		ft_memdel((void**)(&ret));
-		return (NULL);
-	}
-	*(ret->links) = NULL;
 	ret->mark = 0;
 	ret->start = (cmd == 1 ? 1 : 0);
 	ret->end = (cmd == 2 ? 1 : 0);
@@ -97,7 +91,7 @@ t_room			*select_room(t_room *rooms, char *nm)
 	return (ret);
 }
 
-int				list_len(t_room *list)
+int				rlist_len(t_room *list)
 {
 	int			i;
 	t_room		*tmp;

@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 17:51:40 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/10 22:23:13 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/11 15:25:25 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		delete_roomlst(t_room **list)
 			tmp = tmp->next;
 		while (tmp != NULL)
 		{
-			prv = tmp->prev
+			prv = tmp->prev;
 			ft_memdel((void**)(&tmp));
 			tmp = prv;
 		}
@@ -49,10 +49,9 @@ void		delete_map(t_map **map)
 	if (*map != NULL)
 	{
 		if ((*map)->rooms != NULL)
-			delete_roomslst(((*map)->rooms)[0]);
+			delete_roomlst((*map)->rooms);
 		ft_memdel((void**)(&((*map)->rooms)));
-		delete_itab(map->links, map->r);
-		ft_memdel((void**)(&((*map)->paths)));
+		delete_itab((*map)->links, (*map)->r);
 		ft_memdel((void**)(&((*map)->output)));
 		*map = NULL;
 	}

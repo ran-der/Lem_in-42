@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 19:49:08 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/10 22:23:42 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/11 15:10:14 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ t_room			**make_rtab(t_room *rlist, int size)
 
 	if ((tmp = rlist) != NULL)
 	{
-		if ((ret = (t_room**)malloc(sizeof(t_room*) * r)) == NULL)
+		if ((ret = (t_room**)malloc(sizeof(t_room*) * size)) == NULL)
 			return (NULL);
 		id = -1;
-		while (++id < r)
+		while (++id < size)
 		{
 			tmp->id = id;
 			ret[i] = tmp;
@@ -34,7 +34,7 @@ t_room			**make_rtab(t_room *rlist, int size)
 	return (NULL);
 }
 
-t_room			*read_rooms(char **fstlink)
+t_room			*read_rooms(t_map *map, char **fstlink)
 {
 	int			cmd;
 	int			tmp;
@@ -46,7 +46,7 @@ t_room			*read_rooms(char **fstlink)
 	ret = NULL;
 	while (cmd != 3 && get_next_line(0, &buf))
 	{
-		if ((cmd = check_buff(&buf, ret, 0)) == -1 || \
+		if ((cmd = check_buff(&buf, map, 0)) == -1 || \
 				(cmd == 1 && (tmp == 1 || tmp == 3)) || \
 				(cmd == 2 && (tmp == 2 || tmp == 3)))
 			return (NULL);

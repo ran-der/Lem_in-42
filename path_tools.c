@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_lem_in.c                                      :+:      :+:    :+:   */
+/*   path_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/01 18:30:47 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/11 22:09:21 by rvan-der         ###   ########.fr       */
+/*   Created: 2017/03/11 18:03:49 by rvan-der          #+#    #+#             */
+/*   Updated: 2017/03/11 22:09:16 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int			main(void)
+int				pathlen(int *path)
 {
-	t_map		*map;
-	t_path		*paths;
+	int			ret;
 
-	if ((map = read_map()) == NULL)
-		return (main_error(NULL, NULL));
-	if ((paths = find_paths(map)) == NULL)
-		return (main_error(map, NULL));
-	paths = select_paths(*map, paths, plist_len(paths));
-	set_flow_info(map, paths);
+	ret = 0;
+	while (path[ret] > 0)
+		ret++;
+	return (ret);
+}
+
+int				paths_cross(int *p1, int *p2)
+{
+	int			i;
+	int			j;
+
+	i = -1;
+	while (p1[++i] != -1)
+	{
+		j = -1;
+		while (p2[++j] != -1)
+			if (p1[i] == p2[j])
+				return (1);
+	}
+	return (0);
+}

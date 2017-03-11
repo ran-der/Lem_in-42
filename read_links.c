@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 16:27:39 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/10 22:23:50 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/11 17:17:09 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int				already_linked(t_map *map, int r1, int r2)
 	while (i < map->r && (map->links)[r1][i] != -1 && \
 							(map->links)[r1][i] != r2)
 		i++;
-	return ((map->links)[r1][i] == -1 ? 0 : 1);
+	return ((map->links)[r1][i] == r2 ? 1 : 0);
 }
 
 void			add_link(int **links, int r1, int r2)
@@ -63,9 +63,9 @@ void			make_link(char *buf, t_map *map)
 	}
 	name1[i] = '\0';
 	ft_strcpy((char*)name2, buf + i + 1);
-	r1 = (select_room(rooms, (char*)name1))->id;
-	r2 = (select_room(rooms, (char*)name2))->id;
-	if (!already_linked(map->links, r1, r2))
+	r1 = (select_room((map->rooms)[0], (char*)name1))->id;
+	r2 = (select_room((map->rooms)[0], (char*)name2))->id;
+	if (!already_linked(map, r1, r2))
 		add_link(map->links, r1, r2);
 }
 
@@ -78,14 +78,14 @@ int				init_links(t_map *map)
 		return (0);
 	i = -1;
 	while (++i < map->r)
-		if (((map->links)[i] = (int*)malloc(sizeof(int) * map->r)) == NULL)
-			return (0);
-	while (--i > -1)
 	{
+		if (((map->links)[i] = (int*)malloc(sizeof(int) * (map->r + 1))) == NULL)
+			return (0);
 		j = -1;
-		while (++j < map->r)
+		while (++j <= map->r)
 			(map->links)[i][j] = -1;
 	}
+	return (1);
 }
 
 int				read_links(t_map *map, char *fstlink)
@@ -98,7 +98,7 @@ int				read_links(t_map *map, char *fstlink)
 	make_link(fstlink, map);
 	while (get_next_line(0, &buf))
 	{
-		if ((cmd = check_buff(&buf, ret, 1)) > -2 && cmd < 3)
+		if ((cmd = check_buff(&buf, map, 1)) > -2 && cmd < 3)
 		{
 			free(buf);
 			return (0);
