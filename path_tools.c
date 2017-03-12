@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 18:03:49 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/11 22:09:16 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/12 22:24:24 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,30 @@ int				paths_cross(int *p1, int *p2)
 				return (1);
 	}
 	return (0);
+}
+
+int				path_nb(int *line, int p)
+{
+	int			i;
+	int			ret;
+
+	ret = 1;
+	i = -1;
+	while (++i < p)
+		if (line[i] > 0)
+			ret++;
+	return (ret);
+}
+
+int				paths_sum(int *line, t_path **ptab, int lid, int p)
+{
+	int			i;
+	int			ret;
+
+	ret = (ptab[lid])->len - 2;
+	i = -1;
+	while (++i < p)
+		if (line[i] > 0)
+			ret += line[i];
+	return (ret);
 }

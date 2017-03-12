@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 16:15:18 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/11 22:09:05 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/12 22:23:16 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void			find_all(int id, int *current, t_path **ret, t_map map)
 		while ((map.links)[id][++i] != -1)
 			if ((map.links)[id][i] > 0 && \
 					!(((map.rooms)[(map.links)[id][i]])->mark))
-				find_all((map.rooms)[(map.links)[id][i]], current, ret, map);
+				find_all((map.links)[id][i], current, ret, map);
 	}
 	((map.rooms)[id])->mark = 0;
 	current[pathlen(current) - 1] = -1;

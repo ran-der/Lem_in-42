@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 20:29:07 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/11 22:09:33 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/12 22:37:44 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,24 @@ int					check_for_room(char *buf);
 int					check_for_link(char *buf);
 t_map				*rd_error(t_map **map);
 void				make_link(char *buf, t_map *map);
-int					tabsize(char **tab);
 t_room				*read_rooms(t_map *map, char **fstlink);
 t_room				**make_rtab(t_room *rlist, int size);
 int					read_links(t_map *map, char *fstlink);
 void				delete_map(t_map **map);
 void				delete_roomlst(t_room **list);
 void				delete_itab(int **tab, int size);
+t_path				*find_paths(t_map *map);
+void				path_add(t_path *elem, t_path **list);
+int					plist_len(t_path *list);
+t_path				*new_path(int *path);
+int					*pathdup(int *path, int len);
+int					pathlen(int *path);
+int					paths_sum(int *line, t_path **ptab, int lid, int p);
+int					path_nb(int *line, int p);
+int					paths_cross(int *p1, int *p2);
+t_path				*select_paths(t_map map, t_path *paths, int p);
+void				sort_set(int *set, t_path **ptab);
+int					is_sorted_set(int *set, t_path **ptab);
+int					*select_best_set(int **ctab, t_path **ptab, int p);
 
 #endif

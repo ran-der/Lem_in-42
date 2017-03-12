@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 14:36:09 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/11 22:09:35 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/12 22:34:48 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int				pathlen(int *path)
 	int			ret;
 
 	ret = 0;
-	while (path[ret] > 0)
+	while (path[ret] >= 0)
 		ret++;
 	return (ret);
 }
@@ -75,15 +75,4 @@ int				plist_len(t_path *list)
 		tmp = tmp->next;
 	}
 	return (i);
-}
-
-t_room			*select_path(t_path *list, int id)
-{
-	t_path		*ret;
-
-	if ((ret = list) == NULL)
-		return (NULL);
-	while (ret != NULL && ret->id != id)
-		ret = ret->next;
-	return (ret);
 }
