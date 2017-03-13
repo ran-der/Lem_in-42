@@ -6,21 +6,11 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 14:36:09 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/12 22:34:48 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/13 15:06:58 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-int				pathlen(int *path)
-{
-	int			ret;
-
-	ret = 0;
-	while (path[ret] >= 0)
-		ret++;
-	return (ret);
-}
 
 int				*pathdup(int *path, int len)
 {

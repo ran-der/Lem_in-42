@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 20:29:07 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/12 22:37:44 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/13 17:06:52 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <limits.h>
 # include "libft/libft.h"
+# include <stdio.h>
 
 typedef struct		s_room
 {

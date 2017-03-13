@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 19:49:08 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/11 15:10:14 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/13 17:06:33 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,37 @@ t_room			*read_rooms(t_map *map, char **fstlink)
 	tmp = 0;
 	cmd = 0;
 	ret = NULL;
+	write(1, "0.2.0\n", 6);
 	while (cmd != 3 && get_next_line(0, &buf))
 	{
+		write(1, "a", 1);
 		if ((cmd = check_buff(&buf, map, 0)) == -1 || \
 				(cmd == 1 && (tmp == 1 || tmp == 3)) || \
 				(cmd == 2 && (tmp == 2 || tmp == 3)))
+		{
+			write(1, "a", 1);
 			return (NULL);
+		}
+		write(1, "b", 1);
 		if (cmd != -2 && cmd != 3 && (tmp += cmd) > -1)
+		{
+			write(1, "b", 1);
 			get_room(buf, &ret, cmd);
+			write(1, "b", 1);
+		}
+		write(1, "c", 1);
 		if (cmd != 3)
+		{
+			write(1, "c", 1);
 			ft_memdel((void**)(&buf));
+			write(1, "c", 1);
+		}
+		write(1, "end\n", 4);
 	}
+	write(1, "0.2.1\n", 6);
 	if (cmd != 3)
 		return (NULL);
 	*fstlink = buf;
+	write(1, "0.2.2\n", 6);
 	return (ret);
 }

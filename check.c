@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 20:33:07 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/10 22:23:47 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/13 17:06:29 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,9 @@ int				check_buff(char **buf, t_map *map, int ofs)
 {
 	if (!*buf || (*buf)[0] == 'L')
 		return (-1);
+	printf("output3 (%p): %s\n", map->output);
 	map->output = ft_dstrjoin(map->output, "\n");
+	printf("output4: (%p): %s\n", map->output);
 	map->output = ft_dstrjoin(map->output, *buf);
 	if ((*buf)[0] == '#')
 		return (ofs && (*buf)[1] == '#' ? -1 : check_for_cmd(buf, map));
