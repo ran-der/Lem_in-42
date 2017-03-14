@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/11 18:40:47 by rvan-der          #+#    #+#             */
-/*   Updated: 2016/11/10 17:06:05 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/14 17:06:25 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char		*ft_dstrsub(char *str, size_t start, size_t end)
 	return (sub);
 }
 
-char		*ft_dstrjoin(char *s1, char *s2)
+char		*pf_dstrjoin(char *s1, char *s2)
 {
 	char	*new;
 

@@ -6,17 +6,19 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 20:29:07 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/13 17:06:52 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/14 21:58:41 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
 # include <stdlib.h>
-# include <unistd.h>
 # include <limits.h>
+# include <unistd.h>
 # include "libft/libft.h"
 # include <stdio.h>
+# include <sys/types.h>
+# include <sys/uio.h>
 
 typedef struct		s_room
 {
@@ -47,9 +49,12 @@ typedef struct		s_map
 	char			*output;
 }					t_map;
 
+void		print_rlist(t_room *rlist);
+void		print_rtab(t_room **rtab, int size);
+int			get_line_stdin(char **line);
 t_map				*read_map(void);
 int					get_room(char *buf, t_room **rms, int cmd);
-t_room				*select_room(t_room *rooms, char *nm);
+int					room_id(t_room **rooms, int r, char *nm);
 void				room_pushback(t_room **rooms, t_room *elem);
 void				room_add(t_room **rooms, t_room *elem);
 t_room				*new_room(char *nm, int cmd);

@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 13:21:14 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/11 15:20:47 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/14 22:00:05 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,15 @@ void			room_pushback(t_room **rooms, t_room *elem)
 	}
 }
 
-t_room			*select_room(t_room *rooms, char *nm)
+int				room_id(t_room **rooms, int r, char *nm)
 {
-	t_room		*ret;
+	int			ret;
 
-	if ((ret = rooms) == NULL)
-		return (NULL);
-	while (ret != NULL && ft_strcmp(ret->name, nm))
-		ret = ret->next;
-	return (ret);
+	ret = -1;
+	while (++ret < r && rooms[ret] != NULL)
+		if (!ft_strcmp((rooms[ret])->name, nm))
+			return (ret);
+	return (-1);
 }
 
 int				rlist_len(t_room *list)

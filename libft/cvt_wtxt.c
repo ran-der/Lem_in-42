@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/24 19:03:00 by rvan-der          #+#    #+#             */
-/*   Updated: 2016/11/10 17:52:11 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/14 17:08:47 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char			*rewrite(t_conv c, wchar_t *wstr)
 	{
 		if ((utf_ch = wstr_to_utf8(*((unsigned int*)wstr + i))) == NULL)
 			return (NULL);
-		if ((ret = ft_dstrjoin(ret, utf_ch)) == NULL)
+		if ((ret = pf_dstrjoin(ret, utf_ch)) == NULL)
 			return (NULL);
 	}
 	if (c.prec > -1 && ft_wstrlen((unsigned char*)ret) > c.prec)

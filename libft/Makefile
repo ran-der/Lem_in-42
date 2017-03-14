@@ -6,7 +6,7 @@
 #    By: rvan-der <rvan-der@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/03 18:53:21 by rvan-der          #+#    #+#              #
-#    Updated: 2017/02/20 21:00:01 by rvan-der         ###   ########.fr        #
+#    Updated: 2017/03/14 17:29:40 by rvan-der         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -79,6 +79,7 @@ SRC =	ft_get_conv.c \
 		ft_memchr.c \
 		ft_putstr.c \
 		ft_strjoin.c \
+		ft_dstrjoin.c \
 		ft_strsplit.c \
 		ft_atoi_base.c \
 		ft_putnbr_base.c \

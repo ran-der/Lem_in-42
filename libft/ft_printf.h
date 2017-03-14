@@ -6,7 +6,7 @@
 /*   By: rvan-der <rvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/09 14:34:41 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/02/20 20:56:34 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/14 21:56:47 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int						ft_printf(const char *format, ...);
 ** ft_tools.c
 */
 char					*ft_dstrnjoin(char *s1, char *s2, size_t n);
-char					*ft_dstrjoin(char *s1, char *s2);
+char					*pf_dstrjoin(char *s1, char *s2);
 int						ft_check_tp(int y, int x);
 int						ft_wstrlen(unsigned char *wstr);
 char					*ft_dstrsub(char *str, size_t start, size_t end);

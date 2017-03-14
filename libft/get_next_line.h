@@ -6,7 +6,7 @@
 /*   By: rvan-der <rvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/05 16:07:56 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/02/20 21:01:16 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/14 21:55:55 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define GET_NEXT_LINE_H
 # include <sys/types.h>
 # include <sys/uio.h>
-# include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include <unistd.h>
 # include "libft.h"
 # define BUFF_SIZE 8
 

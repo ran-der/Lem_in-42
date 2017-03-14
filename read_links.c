@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 16:27:39 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/11 17:17:09 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/14 22:05:01 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,12 @@ void			make_link(char *buf, t_map *map)
 	}
 	name1[i] = '\0';
 	ft_strcpy((char*)name2, buf + i + 1);
-	r1 = (select_room((map->rooms)[0], (char*)name1))->id;
-	r2 = (select_room((map->rooms)[0], (char*)name2))->id;
+	r1 = room_id(map->rooms, map->r, (char*)name1);
+	r2 = room_id(map->rooms, map->r, (char*)name2);
 	if (!already_linked(map, r1, r2))
+	{
 		add_link(map->links, r1, r2);
+	}
 }
 
 int				init_links(t_map *map)
@@ -107,6 +109,5 @@ int				read_links(t_map *map, char *fstlink)
 			make_link(buf, map);
 		free(buf);
 	}
-	ft_memdel((void**)(&fstlink));
 	return (1);
 }

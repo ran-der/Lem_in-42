@@ -6,7 +6,7 @@
 /*   By: rvan-der <rvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/03 18:55:07 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/05 18:41:12 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/14 21:52:44 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define LIBFT_H
 # include <string.h>
 # include <stdlib.h>
-# include <unistd.h>
 # include "ft_printf.h"
 # include "get_next_line.h"
 # define MAX(a, b) (a >= b ? a : b)
@@ -28,7 +27,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-char				*ft_dstrjoin(char *s1, char *s2);
+char				*ft_dstrjoin(char **s1, char *s2);
 void				*ft_dwstrsub(unsigned char *wstr, size_t start, size_t len);
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
