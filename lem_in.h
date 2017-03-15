@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 20:29:07 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/14 21:58:41 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/15 18:13:30 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,8 @@ t_path				*select_paths(t_map map, t_path *paths, int p);
 void				sort_set(int *set, t_path **ptab);
 int					is_sorted_set(int *set, t_path **ptab);
 int					*select_best_set(int **ctab, t_path **ptab, int p);
+t_path				**make_ptab(t_path *paths, int p);
+int					**init_ctab(int size);
+void				clear_slct_pth(int **ctab, t_path **ptab, int *best_set);
 
 #endif

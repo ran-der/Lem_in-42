@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 18:30:47 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/14 22:11:03 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/15 18:36:03 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@ int			get_line_stdin(char **line)
 	return (rd > 0 ? 1 : 0);
 }
 
-void		print_paths(t_path *paths, t_room **rooms)
+void		print_paths(t_path *paths, t_room **rooms, int p)
 {
 	t_path		*tmp;
 	int			i;
 	int			j;
 
+	printf("pnb: %d\n", p);
 	if ((tmp = paths) != NULL)
 	{
 		i = 0;
@@ -104,13 +105,13 @@ int			main(void)
 		printf("paths NULL\n");
 		return (0);
 	}
+	print_paths(paths, map->rooms, plist_len(paths));
 //	write(1, "2\n", 2);
 //		return (main_error(map, NULL));
 	paths = select_paths(*map, paths, plist_len(paths));
 //	write(1, "3\n", 2);
 	printf("output:\n%s$", map->output);
 //	write(1, "4\n", 2);
-	print_paths(paths, map->rooms);
 //	write(1, "5\n", 2);
 //	set_flow_info(map, paths);
 	return (0);
