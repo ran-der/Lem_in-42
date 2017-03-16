@@ -27,22 +27,14 @@ int				paths_cross(int *p1, int *p2)
 	int			i;
 	int			j;
 
-	write(1, "\nowyeah\n", 8);
 	i = -1;
 	while (p1[++i] != -1)
 	{
-		write(1, "sisi\n", 5);
 		j = -1;
 		while (p2[++j] != -1)
-		{
-			write(1, "pl", 2);
 			if (p1[i] == p2[j])
 				return (1);
-			write(1, "ouf", 3);
-		}
-		write(1, "end\n", 4);
 	}
-	write(1, "bam\n", 4);
 	return (0);
 }
 

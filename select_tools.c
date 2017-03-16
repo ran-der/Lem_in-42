@@ -38,11 +38,11 @@ int				**init_ctab(int size)
 	int			**ret;
 	int			i;
 
-	if ((ret = (int**)malloc(sizeof(int*) * p)) == NULL)
+	if ((ret = (int**)malloc(sizeof(int*) * size)) == NULL)
 		return (NULL);
 	i = -1;
 	while (++i < size)
-		*(ret + i) = (int*)malloc(sizeof(int) * p);
+		*(ret + i) = (int*)malloc(sizeof(int) * size);
 	return (ret);
 }
 

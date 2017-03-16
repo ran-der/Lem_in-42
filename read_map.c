@@ -17,8 +17,6 @@ int				ant_nb(t_map *map)
 	char		*buf;
 	int			i;
 	int			ret;
-	char		*old;
-
 	if (!get_next_line(0, &buf))
 		return (-1);
 	map->output = ft_strdup((const char*)buf);

@@ -91,7 +91,6 @@ int			main(void)
 {
 	t_map		*map;
 	t_path		*paths;
-	char		*buf;
 
 	if ((map = read_map()) == NULL)
 	{

@@ -72,8 +72,6 @@ int				check_for_cmd(char **buf, t_map *map)
 
 int				check_buff(char **buf, t_map *map, int ofs)
 {
-	char		*old;
-
 	if (!(*buf) || (*buf)[0] == 'L')
 		return (-1);
 	map->output = ft_dstrjoin(&(map->output), "\n");
