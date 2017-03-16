@@ -27,11 +27,11 @@ int				paths_cross(int *p1, int *p2)
 	int			i;
 	int			j;
 
-	i = -1;
-	while (p1[++i] != -1)
+	i = 0;
+	while (p1[++i + 1] != -1)
 	{
 		j = -1;
-		while (p2[++j] != -1)
+		while (p2[++j + 1] != -1)
 			if (p1[i] == p2[j])
 				return (1);
 	}

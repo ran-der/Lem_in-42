@@ -109,9 +109,10 @@ int			main(void)
 //		return (main_error(map, NULL));
 	paths = select_paths(*map, paths, plist_len(paths));
 //	write(1, "3\n", 2);
-	printf("output:\n%s$", map->output);
+	printf("output:\n%s$\n", map->output);
+	print_paths(paths, map->rooms, plist_len(paths));
 //	write(1, "4\n", 2);
 //	write(1, "5\n", 2);
-//	set_flow_info(map, paths);
+	set_flow_info(map, paths);
 	return (0);
 }

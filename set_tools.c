@@ -37,6 +37,22 @@ int				*take_set(int **old, int *line, int lid, int p)
 	return (new);
 }
 
+void			print_ctab(int **ctab, int size)
+{
+	int			i;
+	int			j;
+	
+	printf("ctab:\n");
+	i = -1;
+	while (++i < size)
+	{
+		j = -1;
+		while (++j < size)
+			printf("%d ", ctab[i][j]);
+		printf("\n");
+	}
+}
+
 int				*select_best_set(int **ctab, t_path **ptab, int p)
 {
 	int			*ret;
@@ -45,10 +61,10 @@ int				*select_best_set(int **ctab, t_path **ptab, int p)
 	int			tmp;
 	int			i;
 
+	print_ctab(ctab, p);
 	nb = path_nb(ctab[0], p);
 	sum = paths_sum(ctab[0], ptab, 0, p);
 	ret = take_set(NULL, ctab[0], 0, p);
-	print_set(ret);
 	i = 0;
 	while (++i < p)
 	{
@@ -64,6 +80,7 @@ int				*select_best_set(int **ctab, t_path **ptab, int p)
 			ret = take_set(&ret, ctab[i], i, p);
 		}
 	}
+	print_set(ret);
 	return (ret);
 }
 

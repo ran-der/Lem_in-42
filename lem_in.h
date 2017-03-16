@@ -86,5 +86,6 @@ int					*select_best_set(int **ctab, t_path **ptab, int p);
 t_path				**make_ptab(t_path *paths, int p);
 int					**init_ctab(int size);
 void				clear_slct_pth(int **ctab, t_path **ptab, int *best_set);
+void				set_flow_info(t_map *map, t_path *plist);
 
 #endif

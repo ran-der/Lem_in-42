@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "lem_in.h"
+void			print_ctab(int **ctab, int size);
 
 void			set_line(int *line, t_path **ptab, int p)
 {
@@ -57,6 +58,7 @@ void			fill_ctab(int **ctab, t_path **ptab, int p)
 			ctab[j][i] = ctab[i][j];
 		}
 	}
+	print_ctab(ctab, p);
 	i = -1;
 	while (++i < p)
 		set_line(ctab[i], ptab, p);
