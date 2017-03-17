@@ -24,8 +24,7 @@ void			find_all(int id, int *current, t_path **ret, t_map map)
 	{
 		i = -1;
 		while ((map.links)[id][++i] != -1)
-			if ((map.links)[id][i] > 0 && \
-					!(((map.rooms)[(map.links)[id][i]])->mark))
+			if (!(((map.rooms)[(map.links)[id][i]])->mark))
 				find_all((map.links)[id][i], current, ret, map);
 	}
 	((map.rooms)[id])->mark = 0;
