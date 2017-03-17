@@ -17,3 +17,11 @@ t_map			*rd_error(t_map **map)
 	delete_map(map);
 	return (NULL);
 }
+
+int				main_error(t_map **map)
+{
+	if (map != NULL)
+		delete_map(map);
+	ft_printf("ERROR\n");
+	return (0);
+}

@@ -92,27 +92,18 @@ int			main(void)
 	t_map		*map;
 	t_path		*paths;
 
+	//write(1, "0", 1);
 	if ((map = read_map()) == NULL)
-	{
-		printf("map NULL\n");
-		return (0);
-	}
-//	write(1, "1\n", 2);
-//		return (main_error(NULL, NULL));
+		return (main_error(NULL));
+	//write(1, "1", 1);
 	if ((paths = find_paths(map)) == NULL)
-	{
-		printf("paths NULL\n");
-		return (0);
-	}
-	print_paths(paths, map->rooms, plist_len(paths));
-//	write(1, "2\n", 2);
-//		return (main_error(map, NULL));
+		return (main_error(&map));
+	//write(1, "2", 1);
 	paths = select_paths(*map, paths, plist_len(paths));
-//	write(1, "3\n", 2);
-	printf("output:\n%s$\n", map->output);
-	print_paths(paths, map->rooms, plist_len(paths));
-//	write(1, "4\n", 2);
-//	write(1, "5\n", 2);
+	//write(1, "3", 1);
 	set_flow_info(map, paths);
+	ft_printf("%s\n\n", map->output);
+	play(map, paths);
+	//write(1, "5", 1);
 	return (0);
 }

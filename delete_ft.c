@@ -12,6 +12,21 @@
 
 #include "lem_in.h"
 
+void		delete_plist(t_path **plist)
+{
+	t_path		*tmp;
+	
+	if (plist == NULL || (tmp = *plist) == NULL)
+		return ;
+	while (tmp != NULL)
+	{
+		*plist = tmp->next;
+		ft_memdel((void**)(&(tmp->pth)));
+		ft_memdel((void**)(&tmp));
+		tmp = *plist;
+	}
+}
+
 void		delete_itab(int **tab, int size)
 {
 	int			i;

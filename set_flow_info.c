@@ -1,7 +1,7 @@
 
 #include "lem_in.h"
 
-int				sum_plist(t_path *plist)
+int				plist_sum(t_path *plist)
 {
 	int			ret;
 	t_path		*tmp;
@@ -19,9 +19,14 @@ int				sum_plist(t_path *plist)
 void			set_flow_info(t_map *map, t_path *plist)
 {
 	int			turns;
+	int			sum;
+	int			len;
 	t_path		*tmp;
-	
-	turns = (sum_plist(plist) + map->n) / plist_len(plist);
+
+	((map->rooms)[0])->ant = map->n;
+	sum = plist_sum(plist);
+	len = plist_len(plist);
+	turns = (sum + map->n) / len + ((sum + map->n) % len ? 1 : 0);
 	tmp = plist;
 	while (tmp != NULL)
 	{

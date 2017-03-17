@@ -17,6 +17,7 @@ int				ant_nb(t_map *map)
 	char		*buf;
 	int			i;
 	int			ret;
+	
 	if (!get_next_line(0, &buf))
 		return (-1);
 	map->output = ft_strdup((const char*)buf);
@@ -61,6 +62,7 @@ t_map			*read_map(void)
 		ft_memdel((void**)(&fstlink));
 		return (rd_error(&ret));
 	}
+	write(1, "5", 1);
 	ft_memdel((void**)(&fstlink));
 	return (ret);
 }

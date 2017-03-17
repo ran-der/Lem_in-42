@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "lem_in.h"
-void			print_ctab(int **ctab, int size);
 
 void			set_line(int *line, t_path **ptab, int p)
 {
@@ -58,7 +57,6 @@ void			fill_ctab(int **ctab, t_path **ptab, int p)
 			ctab[j][i] = ctab[i][j];
 		}
 	}
-	print_ctab(ctab, p);
 	i = -1;
 	while (++i < p)
 		set_line(ctab[i], ptab, p);
@@ -89,15 +87,12 @@ void			elim_paths(int *set, t_path **ptab, t_map map)
 	int			turns;
 	int			tmp;
 
-	write(1, "a\n", 2);
 	sort_set(set, ptab);
 	wsum = 0;
 	pnb = -1;
 	while (set[++pnb] != -1)
 		wsum += ((ptab[set[pnb]])->len - 2);
-	write(1, "b\n", 2);
 	turns = (wsum + map.n) / pnb + ((wsum + map.n) % pnb ? 1 : 0);
-	write(1, "c\n", 2);
 	while (--pnb > 0)
 	{
 		wsum -= ((ptab[set[pnb]])->len - 2);
@@ -110,7 +105,6 @@ void			elim_paths(int *set, t_path **ptab, t_map map)
 		else
 			break ;
 	}
-	write(1, "d\n", 2);
 }
 
 void			print_set(int *set)
@@ -135,24 +129,16 @@ t_path			*select_paths(t_map map, t_path *paths, int p)
 	t_path		*ret;
 	int			i;
 
-//	write(1, "0\n", 2);
 	ptab = make_ptab(paths, p);
-//	write(1, "1\n", 2);
 	ctab = init_ctab(p);
 	fill_ctab(ctab, ptab, p);
-	write(1, "2\n", 2);
 	best_set = select_best_set(ctab, ptab, p);
-//	printf("best_set len: %d\n", pathlen(best_set));
-//	print_set(best_set);
-	write(1, "3\n", 2);
 	elim_paths(best_set, (t_path**)ptab, map);
-	write(1, "4\n", 2);
 	ret = NULL;
 	i = -1;
 	while (best_set[++i] != -1)
 		if (best_set[i] != -2)
 			path_add(new_path((ptab[best_set[i]])->pth), &ret);
-	write(1, "5\n", 2);
 	clear_slct_pth(ctab, ptab, best_set);
 	return (ret);
 }

@@ -62,7 +62,6 @@ int					rlist_len(t_room *list);
 int					check_buff(char **buf, t_map *map, int ofs);
 int					check_for_room(char *buf);
 int					check_for_link(char *buf);
-t_map				*rd_error(t_map **map);
 void				make_link(char *buf, t_map *map);
 t_room				*read_rooms(t_map *map, char **fstlink);
 t_room				**make_rtab(t_room *rlist, int size);
@@ -70,6 +69,9 @@ int					read_links(t_map *map, char *fstlink);
 void				delete_map(t_map **map);
 void				delete_roomlst(t_room **list);
 void				delete_itab(int **tab, int size);
+void				delete_plist(t_path **plist);
+int					main_error(t_map **map);
+t_map				*rd_error(t_map **map);
 t_path				*find_paths(t_map *map);
 void				path_add(t_path *elem, t_path **list);
 int					plist_len(t_path *list);
@@ -87,5 +89,6 @@ t_path				**make_ptab(t_path *paths, int p);
 int					**init_ctab(int size);
 void				clear_slct_pth(int **ctab, t_path **ptab, int *best_set);
 void				set_flow_info(t_map *map, t_path *plist);
+void				play(t_map *map, t_path *paths);
 
 #endif
