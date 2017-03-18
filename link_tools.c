@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_lem_in.c                                      :+:      :+:    :+:   */
+/*   link_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/01 18:30:47 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/18 20:27:15 by rvan-der         ###   ########.fr       */
+/*   Created: 2017/03/18 20:32:04 by rvan-der          #+#    #+#             */
+/*   Updated: 2017/03/18 20:34:07 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int			main(void)
+int				already_linked(t_map *map, int r1, int r2)
 {
-	t_map		*map;
-	t_path		*paths;
+	int			i;
 
-	if ((map = read_map()) == NULL)
-		return (main_error(NULL));
-	if ((paths = find_paths(map)) == NULL)
-		return (main_error(&map));
-	paths = select_paths(*map, paths, plist_len(paths));
-	set_flow_info(map, paths);
-	ft_printf("%s\n\n", map->output);
-	play(map, paths);
-	return (0);
+	i = 0;
+	while (i < map->r && (map->links)[r1][i] != -1 && \
+			(map->links)[r1][i] != r2)
+		i++;
+	return ((map->links)[r1][i] == r2 ? 1 : 0);
+}
+
+int				tabsize(char **tab)
+{
+	int			ret;
+
+	ret = 1;
+	while (tab[ret] != NULL)
+		ret++;
+	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 19:49:08 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/14 21:47:24 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/18 20:28:48 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_room			**make_rtab(t_room *rlist, int size)
 {
-	int			id;
+	int			i;
 	t_room		*tmp;
 	t_room		**ret;
 
@@ -22,11 +22,10 @@ t_room			**make_rtab(t_room *rlist, int size)
 	{
 		if ((ret = (t_room**)malloc(sizeof(t_room*) * size)) == NULL)
 			return (NULL);
-		id = -1;
-		while (++id < size)
+		i = -1;
+		while (++i < size)
 		{
-			tmp->id = id;
-			ret[id] = tmp;
+			ret[i] = tmp;
 			tmp = tmp->next;
 		}
 		return (ret);

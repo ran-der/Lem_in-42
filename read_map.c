@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 18:54:32 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/14 22:06:53 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/18 19:18:42 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ t_map			*read_map(void)
 		ft_memdel((void**)(&fstlink));
 		return (rd_error(&ret));
 	}
-	write(1, "5", 1);
 	ft_memdel((void**)(&fstlink));
 	return (ret);
 }

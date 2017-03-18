@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 20:29:07 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/15 18:13:30 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/18 20:35:04 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct		s_room
 	int				start;
 	int				end;
 	int				ant;
-	int				id;
 	char			name[22];
 	struct s_room	*next;
 	struct s_room	*prev;
@@ -49,9 +48,6 @@ typedef struct		s_map
 	char			*output;
 }					t_map;
 
-void		print_rlist(t_room *rlist);
-void		print_rtab(t_room **rtab, int size);
-int			get_line_stdin(char **line);
 t_map				*read_map(void);
 int					get_room(char *buf, t_room **rms, int cmd);
 int					room_id(t_room **rooms, int r, char *nm);
@@ -62,7 +58,9 @@ int					rlist_len(t_room *list);
 int					check_buff(char **buf, t_map *map, int ofs);
 int					check_for_room(char *buf);
 int					check_for_link(char *buf);
-void				make_link(char *buf, t_map *map);
+int					make_link(char *buf, t_map *map);
+int					tabsize(char **tab);
+int					already_linked(t_map *map, int r1, int r2);
 t_room				*read_rooms(t_map *map, char **fstlink);
 t_room				**make_rtab(t_room *rlist, int size);
 int					read_links(t_map *map, char *fstlink);
