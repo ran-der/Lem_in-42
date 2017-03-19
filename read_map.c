@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 18:54:32 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/18 19:18:42 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/19 22:40:37 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int				ant_nb(t_map *map)
 	char		*buf;
 	int			i;
 	int			ret;
-	
+
 	if (!get_next_line(0, &buf))
 		return (-1);
 	map->output = ft_strdup((const char*)buf);

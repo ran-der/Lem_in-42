@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 18:30:47 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/18 20:27:15 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/19 23:09:26 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ int			main(void)
 	set_flow_info(map, paths);
 	ft_printf("%s\n\n", map->output);
 	play(map, paths);
+	delete_plist(&paths);
+	delete_map(&map);
 	return (0);
 }

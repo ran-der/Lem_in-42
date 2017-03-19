@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 16:27:39 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/18 20:35:30 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/19 22:39:59 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ int				init_links(t_map *map)
 	i = -1;
 	while (++i < map->r)
 	{
-		if (((map->links)[i] = (int*)malloc(sizeof(int) * (map->r + 1))) == NULL)
+		if (((map->links)[i] = (int*)malloc(sizeof(int) * (map->r + 1))) \
+							== NULL)
 			return (0);
 		j = -1;
 		while (++j <= map->r)

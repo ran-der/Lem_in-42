@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 16:15:18 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/12 22:23:16 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/19 20:42:55 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_path			*find_paths(t_map *map)
 	t_path		*ret;
 	int			current[map->r + 1];
 	int			i;
-	
+
 	i = -1;
 	while (++i < map->r + 1)
 		current[i] = -1;

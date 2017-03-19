@@ -6,15 +6,15 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 20:33:07 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/14 18:10:38 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/19 20:41:21 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int			check_for_link(char *buf)
+int				check_for_link(char *buf)
 {
-	int		i;
+	int			i;
 
 	i = 0;
 	while (buf[i] != '-' && buf[i] != ' ' && ft_isprint(buf[i]))
@@ -29,9 +29,9 @@ int			check_for_link(char *buf)
 	return (!(buf[i]) ? 1 : 0);
 }
 
-int			check_for_room(char *buf)
+int				check_for_room(char *buf)
 {
-	int		i;
+	int			i;
 
 	i = 0;
 	while (buf[i] != ' ' && buf[i] != '-' && ft_isprint(buf[i]))

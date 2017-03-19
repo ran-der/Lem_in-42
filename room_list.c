@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 13:21:14 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/18 18:42:42 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/19 22:41:16 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void			room_add(t_room **rooms, t_room *elem)
 void			room_pushback(t_room **rooms, t_room *elem)
 {
 	t_room		*tmp;
-	
+
 	if (!elem)
 		return ;
 	if (!(tmp = *rooms))

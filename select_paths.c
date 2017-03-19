@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 17:55:10 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/15 18:57:12 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/19 23:16:14 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,12 @@ void			fill_ctab(int **ctab, t_path **ptab, int p)
 	while (++i < p)
 		set_line(ctab[i], ptab, p);
 }
-							
 
 void			set_ptab(t_path **ptab, t_path *paths)
 {
 	t_path		*tmp;
 	int			i;
-	
+
 	if ((tmp = paths) != NULL)
 	{
 		i = 0;
@@ -107,20 +106,6 @@ void			elim_paths(int *set, t_path **ptab, t_map map)
 	}
 }
 
-void			print_set(int *set)
-{
-	int			i;
-	
-	printf("best_set:");
-	i = 0;
-	while (set[i] != -1)
-	{
-		printf(" %d", set[i]);
-		i++;
-	}
-	printf("\n");
-}
-
 t_path			*select_paths(t_map map, t_path *paths, int p)
 {
 	int			**ctab;
@@ -139,6 +124,6 @@ t_path			*select_paths(t_map map, t_path *paths, int p)
 	while (best_set[++i] != -1)
 		if (best_set[i] != -2)
 			path_add(new_path((ptab[best_set[i]])->pth), &ret);
-	clear_slct_pth(ctab, ptab, best_set);
+	clear_slct_pth(ctab, ptab, best_set, p);
 	return (ret);
 }
