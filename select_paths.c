@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 17:55:10 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/19 23:16:14 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/24 23:45:37 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ void			set_line(int *line, t_path **ptab, int p)
 	i = -1;
 	while (++i < p - 1)
 	{
-		if (line[i] > 0)
+		if (line[i] > -1)
 		{
 			j = i;
 			while (++j < p)
 			{
-				if (line[j] > 0 && paths_cross((ptab[i])->pth, (ptab[j])->pth))
+				if (line[j] > -1 && paths_cross((ptab[i])->pth, (ptab[j])->pth))
 				{
 					if ((ptab[i])->len > (ptab[j])->len)
 					{
-						line[i] = 0;
+						line[i] = -1;
 						break ;
 					}
-					line[j] = 0;
+					line[j] = -1;
 				}
 			}
 		}
@@ -48,10 +48,10 @@ void			fill_ctab(int **ctab, t_path **ptab, int p)
 	while (++i < p)
 	{
 		j = i;
-		ctab[i][j] = 0;
+		ctab[i][j] = (ptab[i])->len - 2;
 		while (++j < p)
 		{
-			ctab[i][j] = 0;
+			ctab[i][j] = -1;
 			if (!paths_cross((ptab[i])->pth, (ptab[j])->pth))
 				ctab[i][j] = (ptab[j])->len - 2;
 			ctab[j][i] = ctab[i][j];
@@ -117,7 +117,7 @@ t_path			*select_paths(t_map map, t_path *paths, int p)
 	ptab = make_ptab(paths, p);
 	ctab = init_ctab(p);
 	fill_ctab(ctab, ptab, p);
-	best_set = select_best_set(ctab, ptab, p);
+	best_set = select_best_set(ctab, p);
 	elim_paths(best_set, (t_path**)ptab, map);
 	ret = NULL;
 	i = -1;

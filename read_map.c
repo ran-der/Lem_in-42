@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 18:54:32 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/19 22:40:37 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/24 16:59:01 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ t_map			*read_map(void)
 	t_room		*rlist;
 	char		*fstlink;
 
+	rlist = NULL;
+	fstlink = NULL;
 	ret = init_map();
 	if (!ret || (ret->n = ant_nb(ret)) == -1)
 		return (rd_error(&ret));

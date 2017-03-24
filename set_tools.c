@@ -6,13 +6,13 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 20:51:13 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/12 22:34:57 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/24 22:12:07 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int				*take_set(int **old, int *line, int lid, int p)
+int				*take_set(int **old, int *line, int p)
 {
 	int			i;
 	int			j;
@@ -20,11 +20,10 @@ int				*take_set(int **old, int *line, int lid, int p)
 
 	new = (int*)malloc(sizeof(int) * p);
 	i = -1;
-	new[0] = lid;
-	j = 1;
+	j = 0;
 	while (++i < p)
 	{
-		if (line[i] > 0)
+		if (line[i] > -1)
 		{
 			new[j] = i;
 			j++;
@@ -36,7 +35,7 @@ int				*take_set(int **old, int *line, int lid, int p)
 	return (new);
 }
 
-int				*select_best_set(int **ctab, t_path **ptab, int p)
+int				*select_best_set(int **ctab, int p)
 {
 	int			*ret;
 	int			sum;
@@ -45,21 +44,21 @@ int				*select_best_set(int **ctab, t_path **ptab, int p)
 	int			i;
 
 	nb = path_nb(ctab[0], p);
-	sum = paths_sum(ctab[0], ptab, 0, p);
-	ret = take_set(NULL, ctab[0], 0, p);
+	sum = paths_sum(ctab[0], p);
+	ret = take_set(NULL, ctab[0], p);
 	i = 0;
 	while (++i < p)
 	{
 		if ((tmp = path_nb(ctab[i], p)) > nb)
 		{
 			nb = tmp;
-			sum = paths_sum(ctab[i], ptab, i, p);
-			ret = take_set(&ret, ctab[i], i, p);
+			sum = paths_sum(ctab[i], p);
+			ret = take_set(&ret, ctab[i], p);
 		}
-		else if (tmp == nb && (tmp = paths_sum(ctab[i], ptab, i, p)) < sum)
+		else if (tmp == nb && (tmp = paths_sum(ctab[i], p)) < sum)
 		{
 			sum = tmp;
-			ret = take_set(&ret, ctab[i], i, p);
+			ret = take_set(&ret, ctab[i], p);
 		}
 	}
 	return (ret);

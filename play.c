@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 20:44:34 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/19 20:46:53 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/24 22:50:09 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void			move_ant(t_map *map, t_path *path, t_room *r1, t_room *r2)
 	ft_putstr((const char*)r2->name);
 	if (r1->start)
 	{
-		r2->ant = map->n - r1->ant + 1;
+		r2->ant = (r2->end ? r2->ant + 1 : map->n - r1->ant + 1);
 		r1->ant -= 1;
 		path->pass -= 1;
 	}

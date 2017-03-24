@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 18:03:49 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/15 18:53:27 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/24 22:12:43 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,23 @@ int				path_nb(int *line, int p)
 	int			i;
 	int			ret;
 
-	ret = 1;
+	ret = 0;
 	i = -1;
 	while (++i < p)
-		if (line[i] > 0)
+		if (line[i] > -1)
 			ret++;
 	return (ret);
 }
 
-int				paths_sum(int *line, t_path **ptab, int lid, int p)
+int				paths_sum(int *line, int p)
 {
 	int			i;
 	int			ret;
 
-	ret = (ptab[lid])->len - 2;
 	i = -1;
+	ret = 0;
 	while (++i < p)
-		if (line[i] > 0)
+		if (line[i] > -1)
 			ret += line[i];
 	return (ret);
 }

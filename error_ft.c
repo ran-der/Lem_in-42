@@ -6,11 +6,18 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 13:26:58 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/19 23:01:06 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/24 23:02:27 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+t_room			*room_error(t_room **rlist, char **buf)
+{
+	ft_memdel((void**)buf);
+	delete_roomlst(rlist);
+	return (NULL);
+}
 
 t_map			*rd_error(t_map **map)
 {
@@ -18,10 +25,25 @@ t_map			*rd_error(t_map **map)
 	return (NULL);
 }
 
-int				main_error(t_map **map)
+int				input_error(t_map **map)
 {
 	if (map != NULL)
 		delete_map(map);
-	write(1, "ERROR\n", 6);
+	write(1, "INPUT ERROR\n", 12);
+	return (0);
+}
+
+int				path_error(t_map **map)
+{
+	if (map != NULL)
+		delete_map(map);
+	write(1, "NO PATH\n", 8);
+	return (0);
+}
+
+int				lem_in_usage(void)
+{
+	ft_putendl("ERROR");
+	ft_putendl("Usage: display input on stdin | ./lem-in [-p]");
 	return (0);
 }

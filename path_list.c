@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 14:36:09 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/13 15:06:58 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/24 17:48:18 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_path			*new_path(int *path)
 		return (NULL);
 	}
 	new->next = NULL;
+	new->pass = 0;
 	return (new);
 }
 
