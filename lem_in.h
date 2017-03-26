@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 20:29:07 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/24 23:37:19 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/26 23:06:41 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,17 @@ typedef struct		s_path
 	int				pass;
 	struct s_path	*next;
 }					t_path;
+
+typedef struct		s_set
+{
+	int				len;
+	int				*set;
+	int				*turns;
+	int				tmin;
+	int				pnb;
+	struct s_set	*next;
+	struct s_set	*prev;
+}					t_set;
 
 typedef struct		s_map
 {
@@ -65,11 +76,13 @@ void				delete_map(t_map **map);
 void				delete_roomlst(t_room **list);
 void				delete_itab(int **tab, int size);
 void				delete_plist(t_path **plist);
+void				delete_slist(t_set **slist);
 int					path_error(t_map **map);
 int					input_error(t_map **map);
-int					lem_in_usage(void);
 t_map				*rd_error(t_map **map);
 t_room				*room_error(t_room **rlist, char **buf);
+t_set				*set_error(t_set **sets);
+int					lem_in_usage(void);
 t_path				*find_paths(t_map *map);
 void				path_add(t_path *elem, t_path **list);
 int					plist_len(t_path *list);
@@ -82,11 +95,12 @@ int					paths_cross(int *p1, int *p2);
 t_path				*select_paths(t_map map, t_path *paths, int p);
 void				sort_set(int *set, t_path **ptab);
 int					is_sorted_set(int *set, t_path **ptab);
-int					*select_best_set(int **ctab, int p);
+t_set				*select_best_set(int **ctab, t_path **ptab, int p, int n);
+t_set				*init_set(void);
 t_path				**make_ptab(t_path *paths, int p);
 int					**init_ctab(int size);
 void				clear_slct_pth(int **ctab, t_path **ptab, \
-								int *best_set, int p);
+								t_set *best_set, int p);
 void				set_flow_info(t_map *map, t_path *plist);
 void				play(t_map *map, t_path *paths);
 

@@ -1,39 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path_tools.c                                       :+:      :+:    :+:   */
+/*   error2_ft.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/11 18:03:49 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/26 22:47:30 by rvan-der         ###   ########.fr       */
+/*   Created: 2017/03/26 22:42:03 by rvan-der          #+#    #+#             */
+/*   Updated: 2017/03/26 22:43:37 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int				pathlen(int *path)
+t_set			*set_error(t_set **sets)
 {
-	int			ret;
-
-	ret = 0;
-	while (path[ret] > -1)
-		ret++;
-	return (ret);
-}
-
-int				paths_cross(int *p1, int *p2)
-{
-	int			i;
-	int			j;
-
-	i = 0;
-	while (p1[++i + 1] != -1)
-	{
-		j = -1;
-		while (p2[++j + 1] != -1)
-			if (p1[i] == p2[j])
-				return (1);
-	}
-	return (0);
+	delete_slist(sets);
+	return (NULL);
 }

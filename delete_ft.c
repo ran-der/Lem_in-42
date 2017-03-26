@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 17:51:40 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/19 23:11:43 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/26 22:59:12 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,22 @@ void		delete_roomlst(t_room **list)
 			tmp = prv;
 		}
 		*list = NULL;
+	}
+}
+
+void		delete_slist(t_set **slist)
+{
+	t_set		*tmp;
+
+	if (slist == NULL || (tmp = *slist) == NULL)
+		return ;
+	while (tmp != NULL)
+	{
+		*slist = tmp->next;
+		ft_memdel((void**)(&(tmp->set)));
+		ft_memdel((void**)(&(tmp->turns)));
+		ft_memdel((void**)(&tmp));
+		tmp = *slist;
 	}
 }
 

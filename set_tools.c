@@ -6,63 +6,11 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 20:51:13 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/24 22:12:07 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/26 22:56:18 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-int				*take_set(int **old, int *line, int p)
-{
-	int			i;
-	int			j;
-	int			*new;
-
-	new = (int*)malloc(sizeof(int) * p);
-	i = -1;
-	j = 0;
-	while (++i < p)
-	{
-		if (line[i] > -1)
-		{
-			new[j] = i;
-			j++;
-		}
-	}
-	new[j] = -1;
-	if (old != NULL)
-		free(*old);
-	return (new);
-}
-
-int				*select_best_set(int **ctab, int p)
-{
-	int			*ret;
-	int			sum;
-	int			nb;
-	int			tmp;
-	int			i;
-
-	nb = path_nb(ctab[0], p);
-	sum = paths_sum(ctab[0], p);
-	ret = take_set(NULL, ctab[0], p);
-	i = 0;
-	while (++i < p)
-	{
-		if ((tmp = path_nb(ctab[i], p)) > nb)
-		{
-			nb = tmp;
-			sum = paths_sum(ctab[i], p);
-			ret = take_set(&ret, ctab[i], p);
-		}
-		else if (tmp == nb && (tmp = paths_sum(ctab[i], p)) < sum)
-		{
-			sum = tmp;
-			ret = take_set(&ret, ctab[i], p);
-		}
-	}
-	return (ret);
-}
 
 int				is_sorted_set(int *set, t_path **ptab)
 {
@@ -97,4 +45,33 @@ void			sort_set(int *set, t_path **ptab)
 			i++;
 		}
 	}
+}
+
+t_set			*init_set(void)
+{
+	t_set		*new;
+	int			i;
+
+	if ((new = (t_set*)malloc(sizeof(t_set))) == NULL)
+		return (NULL);
+	if ((new->set = (int*)malloc(sizeof(int) * (p + 1))) == NULL)
+	{
+		free(new);
+		return (NULL);
+	}
+	if ((new->turns = (int*)malloc(sizeof(int) * (p + 1))) == NULL)
+	{
+		free(new->set);
+		free(new);
+		return (NULL);
+	}
+	new->next = NULL;
+	new->prev = NULL;
+	i = -1;
+	while (++i <= p)
+	{
+		(new->set)[i] = -1;
+		(new->turns)[i] = -1;
+	}
+	return (new);
 }
