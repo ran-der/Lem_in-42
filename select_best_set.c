@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/26 21:13:42 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/26 23:17:13 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/27 21:47:15 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_set			*new_set(int *line, t_path **ptab, int p, int n)
 {
 	t_set		*new;
 
-	if ((new = init_set()) == NULL)
+	if ((new = init_set(p)) == NULL)
 		return (0);
 	take_set(new->set, line, p);
 	sort_set(new->set, ptab);

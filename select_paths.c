@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 17:55:10 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/26 23:01:32 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/27 21:47:21 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,12 @@ t_path			*select_paths(t_map map, t_path *paths, int p)
 	ptab = make_ptab(paths, p);
 	ctab = init_ctab(p);
 	fill_ctab(ctab, ptab, p);
-	best_set = select_best_set(ctab, ptab, p, map.n);
+	if ((best_set = select_best_set(ctab, ptab, p, map.n)) == NULL)
+	{
+		clear_slct_pth(ctab, ptab, best_set, p);
+		write(1, "PATH ERROR\n", 11);
+		return (NULL);
+	}
 	ret = NULL;
 	i = -1;
 	while (++i < best_set->pnb)

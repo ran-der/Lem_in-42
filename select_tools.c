@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 17:48:09 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/26 22:49:44 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/27 23:09:57 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int				**init_ctab(int size)
 	return (ret);
 }
 
-void			clear_slct_pth(int **ctab, t_path **ptab, t_set *best_set, int p)
+void			clear_slct_pth(int **ctab, t_path **ptab, t_set *best_set, \
+																	int p)
 {
 	int			i;
 

@@ -6,11 +6,12 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 20:51:13 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/26 22:56:18 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/27 21:46:27 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#include <stdio.h>
 
 int				is_sorted_set(int *set, t_path **ptab)
 {
@@ -47,7 +48,7 @@ void			sort_set(int *set, t_path **ptab)
 	}
 }
 
-t_set			*init_set(void)
+t_set			*init_set(int p)
 {
 	t_set		*new;
 	int			i;
