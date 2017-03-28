@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 13:26:58 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/24 23:02:27 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/28 22:38:45 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,24 @@ t_map			*rd_error(t_map **map)
 	return (NULL);
 }
 
-int				input_error(t_map **map)
+int				input_error(t_opt **opt)
 {
+	if (*opt)
+	{
+		if ((*opt)->fd)
+			close((*opt)->fd);
+		free(*opt);
+	}
 	if (map != NULL)
 		delete_map(map);
 	write(1, "INPUT ERROR\n", 12);
 	return (0);
 }
 
-int				path_error(t_map **map)
+int				path_error(t_map **map, t_opt **opt)
 {
+	if (*opt)
+		free(*opt);
 	if (map != NULL)
 		delete_map(map);
 	write(1, "NO PATH\n", 8);

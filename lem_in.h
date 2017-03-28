@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 20:29:07 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/27 21:44:22 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/28 22:40:08 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,17 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <unistd.h>
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/uio.h>
 # include "libft/libft.h"
+
+typedef struct		s_opt
+{
+	int				fd;
+	int				path;
+	int				color;
+}					t_opt;
 
 typedef struct		s_room
 {
@@ -56,32 +66,34 @@ typedef struct		s_map
 	char			*output;
 }					t_map;
 
-t_map				*read_map(void);
+t_map				*read_map(int fd);
 int					get_room(char *buf, t_room **rms, int cmd);
 int					room_id(t_room **rooms, int r, char *nm);
 void				room_pushback(t_room **rooms, t_room *elem);
 void				room_add(t_room **rooms, t_room *elem);
 t_room				*new_room(char *nm, int cmd);
 int					rlist_len(t_room *list);
-int					check_buff(char **buf, t_map *map, int ofs);
+t_opt				*check_args(int argc, char **argv);
+int					check_buff(char **buf, t_map *map, int ofs, int fd);
 int					check_for_room(char *buf);
 int					check_for_link(char *buf);
 int					make_link(char *buf, t_map *map);
 int					tabsize(char **tab);
 int					already_linked(t_map *map, int r1, int r2);
-t_room				*read_rooms(t_map *map, char **fstlink);
+t_room				*read_rooms(t_map *map, char **fstlink, int fd);
 t_room				**make_rtab(t_room *rlist, int size);
-int					read_links(t_map *map, char *fstlink);
+int					read_links(t_map *map, char *fstlink, int fd);
 void				delete_map(t_map **map);
 void				delete_roomlst(t_room **list);
 void				delete_itab(int **tab, int size);
 void				delete_plist(t_path **plist);
 void				delete_slist(t_set **slist);
-int					path_error(t_map **map);
-int					input_error(t_map **map);
+int					path_error(t_map **map, t_opt **opt);
+int					input_error(t_opt **opt);
 t_map				*rd_error(t_map **map);
 t_room				*room_error(t_room **rlist, char **buf);
 t_set				*set_error(t_set **sets);
+t_opt				*arg_error(t_opt **opt);
 int					lem_in_usage(void);
 t_path				*find_paths(t_map *map);
 void				path_add(t_path *elem, t_path **list);

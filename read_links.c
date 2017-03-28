@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 16:27:39 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/19 22:39:59 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/28 22:27:46 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int				init_links(t_map *map)
 	return (1);
 }
 
-int				read_links(t_map *map, char *fstlink)
+int				read_links(t_map *map, char *fstlink, int fd)
 {
 	int			cmd;
 	char		*buf;
@@ -80,9 +80,9 @@ int				read_links(t_map *map, char *fstlink)
 		return (0);
 	if (!make_link(fstlink, map))
 		return (0);
-	while (get_next_line(0, &buf))
+	while (get_next_line(fd, &buf))
 	{
-		if ((cmd = check_buff(&buf, map, 1)) > -2 && cmd < 3)
+		if ((cmd = check_buff(&buf, map, 1, fd)) > -2 && cmd < 3)
 		{
 			free(buf);
 			return (0);

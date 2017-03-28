@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 19:49:08 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/24 16:54:13 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/28 22:22:33 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_room			**make_rtab(t_room *rlist, int size)
 	return (NULL);
 }
 
-t_room			*read_rooms(t_map *map, char **fstlink)
+t_room			*read_rooms(t_map *map, char **fstlink, int fd)
 {
 	int			cmd;
 	int			tmp;
@@ -44,9 +44,9 @@ t_room			*read_rooms(t_map *map, char **fstlink)
 	cmd = 0;
 	ret = NULL;
 	buff = NULL;
-	while (cmd != 3 && get_next_line(0, &buff))
+	while (cmd != 3 && get_next_line(fd, &buff))
 	{
-		if ((cmd = check_buff(&buff, map, 0)) == -1 || \
+		if ((cmd = check_buff(&buff, map, 0, fd)) == -1 || \
 				(cmd == 1 && (tmp == 1 || tmp == 3)) || \
 				(cmd == 2 && (tmp == 2 || tmp == 3)))
 			return (room_error(&ret, &buff));

@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 20:33:07 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/24 23:31:18 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/28 22:28:58 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int				check_for_room(char *buf)
 	return (!(buf[i]) ? 1 : 0);
 }
 
-int				check_for_cmd(char **buf, t_map *map, int ofs)
+int				check_for_cmd(char **buf, t_map *map, int ofs, int fd)
 {
 	int			ret;
 
@@ -60,7 +60,7 @@ int				check_for_cmd(char **buf, t_map *map, int ofs)
 	if (ofs)
 		return (-1);
 	free(*buf);
-	get_next_line(0, buf);
+	get_next_line(fd, buf);
 	if (!check_for_room(*buf))
 		return (-1);
 	map->output = ft_dstrjoin(&(map->output), "\n");
@@ -68,14 +68,14 @@ int				check_for_cmd(char **buf, t_map *map, int ofs)
 	return (ret);
 }
 
-int				check_buff(char **buf, t_map *map, int ofs)
+int				check_buff(char **buf, t_map *map, int ofs, int fd)
 {
 	if (!(*buf) || (*buf)[0] == 'L')
 		return (-1);
 	map->output = ft_dstrjoin(&(map->output), "\n");
 	map->output = ft_dstrjoin(&(map->output), *buf);
 	if ((*buf)[0] == '#')
-		return (check_for_cmd(buf, map, ofs));
+		return (check_for_cmd(buf, map, ofs, fd));
 	if (!ofs && check_for_room(*buf))
 		return (0);
 	if (check_for_link(*buf))
