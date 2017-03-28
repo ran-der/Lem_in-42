@@ -49,17 +49,43 @@ void		print_paths(t_path *paths, t_map *map)
 	}
 }
 
+t_opt		*init_opt(void)
+{
+	t_opt		*ret;
+	
+	if ((ret = (t_opt*)malloc(sizeof(t_opt))) == NULL)
+		return (NULL);
+	ret->fd = 0;
+	ret->path = 0;
+	ret->color = 0;
+	return (ret);
+}
+
+t_opt		*check_args(int argc, char **argv)
+{
+	int			i;
+	t_opt		*ret;
+	
+	i = -1;
+	if ((ret = init_opt()) == NULL)
+		return (NULL);
+	while (++i < argc)
+	{
+		if (ft_streq
+	if (argc > 2 || (argc == 2 && ft_strcmp(argv[1], "-p")))
+
 int			main(int argc, char **argv)
 {
 	t_map		*map;
 	t_path		*paths;
+	t_opt		*options;
 
-	if (argc > 2 || (argc == 2 && ft_strcmp(argv[1], "-p")))
+	if ((options = check_args(argc, argv)) == NULL)
 		return (lem_in_usage());
 	if ((map = read_map()) == NULL)
-		return (input_error(NULL));
+		return (input_error(&options));
 	if ((paths = find_paths(map)) == NULL)
-		return (path_error(&map));
+		return (path_error(&map, &options));
 	paths = select_paths(*map, paths, plist_len(paths));
 	set_flow_info(map, paths);
 	ft_printf("%s\n\n", map->output);
