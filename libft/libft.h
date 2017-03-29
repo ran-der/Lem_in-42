@@ -6,7 +6,7 @@
 /*   By: rvan-der <rvan-der@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/03 18:55:07 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/14 21:52:44 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/29 22:27:51 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 # define MAX(a, b) (a >= b ? a : b)
 # define MIN(a, b) (a <= b ? a : b)
 # define ABS(x) (x < 0 ? -x : x)
+# define RED "\x1b[31m"
+# define GRE "\x1b[32m"
+# define YEL "\x1b[33m"
+# define BLU "\x1b[34m"
+# define MAG "\x1b[35m"
+# define CYA "\x1b[36m"
+# define NRM "\x1b[0m"
 
 typedef struct		s_list
 {

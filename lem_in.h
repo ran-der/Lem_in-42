@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 20:29:07 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/28 22:40:08 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/29 22:46:26 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,11 @@ void				delete_plist(t_path **plist);
 void				delete_slist(t_set **slist);
 int					path_error(t_map **map, t_opt **opt);
 int					input_error(t_opt **opt);
-t_map				*rd_error(t_map **map);
+t_map				*read_error(t_map **map);
 t_room				*room_error(t_room **rlist, char **buf);
 t_set				*set_error(t_set **sets);
 t_opt				*arg_error(t_opt **opt);
-int					lem_in_usage(void);
+int					lem_in_usage(t_opt **opt);
 t_path				*find_paths(t_map *map);
 void				path_add(t_path *elem, t_path **list);
 int					plist_len(t_path *list);
@@ -114,6 +114,6 @@ int					**init_ctab(int size);
 void				clear_slct_pth(int **ctab, t_path **ptab, \
 								t_set *best_set, int p);
 void				set_flow_info(t_map *map, t_path *plist);
-void				play(t_map *map, t_path *paths);
-
+void				play(t_map *map, t_path *paths, int color);
+void				color_output(char *str);
 #endif

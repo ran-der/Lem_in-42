@@ -6,19 +6,19 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 18:54:32 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/24 16:59:01 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/29 20:34:19 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int				ant_nb(t_map *map)
+int				ant_nb(t_map *map, int fd)
 {
 	char		*buf;
 	int			i;
 	int			ret;
 
-	if (!get_next_line(0, &buf))
+	if (!get_next_line(fd, &buf))
 		return (-1);
 	map->output = ft_strdup((const char*)buf);
 	i = 0;
@@ -43,7 +43,7 @@ t_map			*init_map(void)
 	return (ret);
 }
 
-t_map			*read_map(void)
+t_map			*read_map(int fd)
 {
 	t_map		*ret;
 	t_room		*rlist;
@@ -52,17 +52,17 @@ t_map			*read_map(void)
 	rlist = NULL;
 	fstlink = NULL;
 	ret = init_map();
-	if (!ret || (ret->n = ant_nb(ret)) == -1)
-		return (rd_error(&ret));
-	if (!(rlist = read_rooms(ret, &fstlink)))
-		return (rd_error(&ret));
+	if (!ret || (ret->n = ant_nb(ret, fd)) == -1)
+		return (read_error(&ret));
+	if (!(rlist = read_rooms(ret, &fstlink, fd)))
+		return (read_error(&ret));
 	ret->r = rlist_len(rlist);
 	if (!(ret->rooms = make_rtab(rlist, ret->r)))
-		return (rd_error(&ret));
-	if (!read_links(ret, fstlink))
+		return (read_error(&ret));
+	if (!read_links(ret, fstlink, fd))
 	{
 		ft_memdel((void**)(&fstlink));
-		return (rd_error(&ret));
+		return (read_error(&ret));
 	}
 	ft_memdel((void**)(&fstlink));
 	return (ret);

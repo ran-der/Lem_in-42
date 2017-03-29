@@ -1,7 +1,7 @@
-4
-##start
-start 1 1
+200
 1 1 1
+##end
+end 1 1
 2 2 2
 3 3 3
 4 4 4
@@ -10,8 +10,8 @@ start 1 1
 7 7 7
 8 8 8
 9 9 9
-##end
-end 1 1
+##start
+start 1 1
 start-1
 start-5
 1-2

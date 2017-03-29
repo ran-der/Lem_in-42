@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 21:33:29 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/28 22:21:01 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/03/29 16:03:58 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,9 @@ t_opt		*init_opt(void)
 
 int			check_opt_f(char *arg, t_opt *opt)
 {
-	int			ret;
-
-	if (opt->fd || (ret = open(arg, O_RDONLY)) == -1)
+	if (opt->fd != 0)
 		return (0);
-	return (ret);
+	return (open(arg, O_RDONLY));
 }
 
 int			check_opt_c(t_opt *opt)
