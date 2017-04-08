@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 20:44:34 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/29 22:59:27 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/04/07 14:57:13 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void			print_move(t_map *map, t_room *r1, t_room *r2, int color)
 {
-//	if (color)
-//		ft_putstr(CYA);
 	write(1, "L", 1);
-	ft_putstr(RED);
+	if (color)
+		ft_putstr(RED);
 	ft_putnbr(r1->start ? map->n - r1->ant + 1 : r1->ant);
 	ft_putstr(NRM);
 	write(1, "-", 1);
 	if (color)
 		ft_putstr(YEL);
 	ft_putstr((const char*)r2->name);
-	ft_putstr(NRM);
+	if (color)
+		ft_putstr(NRM);
 }
 
 void			move_ant(t_map *map, t_path *path, int i, int color)

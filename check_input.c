@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 20:33:07 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/28 22:28:58 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/04/07 15:11:28 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int				check_for_link(char *buf)
 {
 	int			i;
 
+	if (buf[0] == '#')
+		return (0);
 	i = 0;
 	while (buf[i] != '-' && buf[i] != ' ' && ft_isprint(buf[i]))
 		i++;

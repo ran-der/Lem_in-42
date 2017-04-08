@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 20:29:07 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/29 22:46:26 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/04/08 15:17:07 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,4 +116,5 @@ void				clear_slct_pth(int **ctab, t_path **ptab, \
 void				set_flow_info(t_map *map, t_path *plist);
 void				play(t_map *map, t_path *paths, int color);
 void				color_output(char *str);
+char				**split_lines(char *str);
 #endif

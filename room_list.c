@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 13:21:14 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/19 22:41:16 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/04/07 14:56:16 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,9 @@ void			room_pushback(t_room **rooms, t_room *elem)
 			tmp = tmp->next;
 		if (tmp->end)
 		{
-			(tmp->prev)->next = elem;
+			if (tmp->prev != NULL)
+				(tmp->prev)->next = elem;
+			*rooms = (!tmp->prev ? elem : *rooms);
 			elem->prev = tmp->prev;
 			tmp->prev = elem;
 			elem->next = tmp;

@@ -6,7 +6,7 @@
 /*   By: rvan-der <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 17:48:47 by rvan-der          #+#    #+#             */
-/*   Updated: 2017/03/29 22:56:48 by rvan-der         ###   ########.fr       */
+/*   Updated: 2017/04/08 15:42:31 by rvan-der         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void			color_output(char *str)
 	char		**ltab;
 	int			i;
 
-	ltab = ft_strsplit(str, '\n');
+	ltab = split_lines(str);
 	if (!ltab)
 		return ;
 	ft_putstr(RED);
@@ -69,7 +69,6 @@ void			color_output(char *str)
 		else
 			color_room((char*)(ltab[i]));
 		write(1, "\n", 1);
-		free(ltab[i]);
 	}
 	write(1, "\n", 1);
 	free(ltab);
